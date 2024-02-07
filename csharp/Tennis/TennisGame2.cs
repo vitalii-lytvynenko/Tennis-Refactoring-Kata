@@ -1,5 +1,3 @@
-using Microsoft.VisualBasic;
-
 namespace Tennis
 {
     public class TennisGame2 : ITennisGame
@@ -57,7 +55,6 @@ namespace Tennis
 
         private static string GetPointName(int point) => point >= 0 && point < pointNames.Length ? pointNames[point] : "";
         
-
         public void WonPoint(string player)
         {
             if (player == _player1Name)
