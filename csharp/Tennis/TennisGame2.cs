@@ -1,133 +1,119 @@
+using Microsoft.VisualBasic;
+
 namespace Tennis
 {
     public class TennisGame2 : ITennisGame
     {
-        private int p1point;
-        private int p2point;
+        private int player1points;
+        private int player2points;
 
-        private string p1res = "";
-        private string p2res = "";
-        private string player1Name;
-        private string player2Name;
+        private string score = "";
+
+        private string player1result = "";
+        private string player2result = "";
+        private string _player1Name;
+        private string _player2Name;
 
         public TennisGame2(string player1Name, string player2Name)
         {
-            this.player1Name = player1Name;
-            p1point = 0;
-            this.player2Name = player2Name;
+            _player1Name = player1Name;
+            _player2Name = player2Name;
         }
 
         public string GetScore()
         {
-            var score = "";
-            if (p1point == p2point && p1point < 3)
+            if (player1points == player2points && player1points < 3)
             {
-                if (p1point == 0)
+                if (player1points == 0)
                     score = "Love";
-                if (p1point == 1)
+                if (player1points == 1)
                     score = "Fifteen";
-                if (p1point == 2)
+                if (player1points == 2)
                     score = "Thirty";
                 score += "-All";
             }
-            if (p1point == p2point && p1point > 2)
+            if (player1points == player2points && player1points > 2)
                 score = "Deuce";
 
-            if (p1point > 0 && p2point == 0)
+            if (player1points > 0 && player2points == 0)
             {
-                if (p1point == 1)
-                    p1res = "Fifteen";
-                if (p1point == 2)
-                    p1res = "Thirty";
-                if (p1point == 3)
-                    p1res = "Forty";
+                if (player1points == 1)
+                    player1result = "Fifteen";
+                if (player1points == 2)
+                    player1result = "Thirty";
+                if (player1points == 3)
+                    player1result = "Forty";
 
-                p2res = "Love";
-                score = p1res + "-" + p2res;
+                player2result = "Love";
+                score = player1result + "-" + player2result;
             }
-            if (p2point > 0 && p1point == 0)
+            if (player2points > 0 && player1points == 0)
             {
-                if (p2point == 1)
-                    p2res = "Fifteen";
-                if (p2point == 2)
-                    p2res = "Thirty";
-                if (p2point == 3)
-                    p2res = "Forty";
+                if (player2points == 1)
+                    player2result = "Fifteen";
+                if (player2points == 2)
+                    player2result = "Thirty";
+                if (player2points == 3)
+                    player2result = "Forty";
 
-                p1res = "Love";
-                score = p1res + "-" + p2res;
-            }
-
-            if (p1point > p2point && p1point < 4)
-            {
-                if (p1point == 2)
-                    p1res = "Thirty";
-                if (p1point == 3)
-                    p1res = "Forty";
-                if (p2point == 1)
-                    p2res = "Fifteen";
-                if (p2point == 2)
-                    p2res = "Thirty";
-                score = p1res + "-" + p2res;
-            }
-            if (p2point > p1point && p2point < 4)
-            {
-                if (p2point == 2)
-                    p2res = "Thirty";
-                if (p2point == 3)
-                    p2res = "Forty";
-                if (p1point == 1)
-                    p1res = "Fifteen";
-                if (p1point == 2)
-                    p1res = "Thirty";
-                score = p1res + "-" + p2res;
+                player1result = "Love";
+                score = player1result + "-" + player2result;
             }
 
-            if (p1point > p2point && p2point >= 3)
+            if (player1points > player2points && player1points < 4)
+            {
+                if (player1points == 2)
+                    player1result = "Thirty";
+                if (player1points == 3)
+                    player1result = "Forty";
+                if (player2points == 1)
+                    player2result = "Fifteen";
+                if (player2points == 2)
+                    player2result = "Thirty";
+                score = player1result + "-" + player2result;
+            }
+            if (player2points > player1points && player2points < 4)
+            {
+                if (player2points == 2)
+                    player2result = "Thirty";
+                if (player2points == 3)
+                    player2result = "Forty";
+                if (player1points == 1)
+                    player1result = "Fifteen";
+                if (player1points == 2)
+                    player1result = "Thirty";
+                score = player1result + "-" + player2result;
+            }
+
+            if (player1points > player2points && player2points >= 3)
             {
                 score = "Advantage player1";
             }
 
-            if (p2point > p1point && p1point >= 3)
+            if (player2points > player1points && player1points >= 3)
             {
                 score = "Advantage player2";
             }
 
-            if (p1point >= 4 && p2point >= 0 && (p1point - p2point) >= 2)
+            if (player1points >= 4 && player2points >= 0 && (player1points - player2points) >= 2)
             {
                 score = "Win for player1";
             }
-            if (p2point >= 4 && p1point >= 0 && (p2point - p1point) >= 2)
+            if (player2points >= 4 && player1points >= 0 && (player2points - player1points) >= 2)
             {
                 score = "Win for player2";
             }
             return score;
         }
 
-        public void SetP1Score(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                P1Score();
-            }
-        }
-
-        public void SetP2Score(int number)
-        {
-            for (var i = 0; i < number; i++)
-            {
-                P2Score();
-            }
-        }
-
         private void P1Score()
         {
-            p1point++;
+            player1points++;
         }
 
         private void P2Score()
         {
-            p2point++;
+            player2points++;
         }
 
         public void WonPoint(string player)
